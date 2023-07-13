@@ -34,10 +34,14 @@
 extern "C" {
 #endif
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <stdint.h>
+#include "include/strtoll.h"
+#include "include/strtod.h"
+#include "include/strcmp.h"
+
+//#include <stddef.h>
+//#include <stdlib.h>
+//#include <stdbool.h>
+//#include <stdint.h>
 
 #define json_containerOf( ptr, type, member ) \
     ((type*)( (char*)ptr - offsetof( type, member ) ))
@@ -139,15 +143,15 @@ static inline bool json_getBoolean( json_t const* property ) {
 /** Get the value of a json integer property.
   * @param property A valid handler of a json object. Its type must be JSON_INTEGER.
   * @return The value stdint. */
-static inline int64_t json_getInteger( json_t const* property ) {
-  return strtoll( property->u.value,(char**)NULL, 10);
+static inline long long json_getInteger( json_t const* property ) {
+  return strtoll( property->u.value,(char**)0, 10);
 }
 
 /** Get the value of a json real property.
   * @param property A valid handler of a json object. Its type must be JSON_REAL.
   * @return The value. */
 static inline double json_getReal( json_t const* property ) {
-  return strtod( property->u.value,(char**)NULL );
+  return strtod( property->u.value,(char**)0 );
 }
 
 

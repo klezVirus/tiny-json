@@ -27,9 +27,11 @@
 
 */
 
-#include <string.h>
-#include <ctype.h>
 #include "tiny-json.h"
+
+#define offsetof(a,b) ((int)(&(((a*)(0))->b)))
+
+const unsigned short _sch_istable[256];
 
 /** Structure to handle a heap of JSON properties. */
 typedef struct jsonStaticPool_s {
